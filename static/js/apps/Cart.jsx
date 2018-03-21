@@ -17,8 +17,16 @@ class Cart extends Component {
         
         const { cart } = this.props;
         const { click } = this.props;
+        console.table(cart);
+        console.log(cart.length);
         return (
             <div>
+                {cart.length > 0 ?
+                     <p>{(cart.reduce(function(a, b) {
+                        return {'price': a.price + b.price};
+                     }).price).toLocaleString()}</p> 
+                      : null
+                }
                 {
                     cart.map(prod => {
                         console.log(prod);

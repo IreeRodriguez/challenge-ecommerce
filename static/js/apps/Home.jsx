@@ -48,6 +48,12 @@ class Home extends Component {
         this.setState({
             cartProducts: newState
         })
+
+        const result = this.state.cartProducts.reduce(function(a, b) {
+            return {'price': a.price + b.price};
+         }).price;
+
+        console.log(result);
     }
 
     removeFromCart(event) {
@@ -82,7 +88,7 @@ class Home extends Component {
                 {
                     isLoading === false && products.length > 0 ? products.map(prod => {
                         return (
-                            <div key={prod.id}>
+                            <div key={prod.id} className="product">
                                 <img src={prod.imageURL} alt="" />
                                 <p>{prod.name}</p>
                                 <p>${prod.price}</p>
