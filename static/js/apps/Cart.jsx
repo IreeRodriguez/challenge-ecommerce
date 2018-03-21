@@ -8,40 +8,30 @@ class Cart extends Component {
         };
     }
 
-    removeItem() {
-        
-    }
-
     render() {
-        console.log(this.props.cart);
-        
         const { cart } = this.props;
         const { click } = this.props;
-        console.table(cart);
-        console.log(cart.length);
         return (
             <div>
-                {cart.length > 0 ?
-                     <p>{(cart.reduce(function(a, b) {
-                        return {'price': a.price + b.price};
-                     }).price).toLocaleString()}</p> 
-                      : null
-                }
-                {
-                    cart.map(prod => {
-                        console.log(prod);
-                        
-                        return (
-                            <div key={prod.id}>
-                                <img src={prod.imageURL} alt="" />
-                                <p>{prod.name}</p>
-                                <p>${prod.price}</p>
-                                <button name={prod.id} onClick={click.bind(this)}>Remove from Cart</button>
-                                {/* <a href="#" onClick={this.submitCategory.bind(id)} value={id}>{categories}</a> */}
-                            </div>)
-                    })
-                }
-
+                <div className="center">
+                    {cart.length > 0 ?
+                        <p className="counter">Total: $ {cart.reduce((acc, el) => acc + el.price, 0).toLocaleString()}</p> : null
+                    }
+                </div>
+                <section id="cart">
+                    {
+                        cart.map(prod => {                
+                            return (
+                                <div key={prod.id} className="product">
+                                    <img src={prod.imageURL} alt="" />
+                                    <p>{prod.name}</p>
+                                    <p>${prod.price}</p>
+                                    <button name={prod.id} onClick={click.bind(this)} className="btn" >Remove from Cart</button>
+                                    {/* <a href="#" onClick={this.submitCategory.bind(id)} value={id}>{categories}</a> */}
+                                </div>)
+                        })
+                    }
+                </section>
             </div>
         );
     }

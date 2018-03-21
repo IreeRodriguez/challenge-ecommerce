@@ -1,1 +1,52 @@
 /* you can add any styles you think could improve user's experience */
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#products {
+  background-color: khaki;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+#cart {
+  padding: 2em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.product {
+  padding: 0.5em;
+  background-color: white;
+  border: 0.1em solid gray;
+  border-radius: 0.5em;
+  transition: all .2s ease-in-out;
+}
+
+.product:hover {
+  transform: scale(1.1);
+}
+
+.btn {
+  /* background-color: lightseagreen; */
+  padding: 0.2em;
+  border-radius: 0.2em;
+}
+
+.btn:hover {
+  background-color: limegreen;
+}
+
+.center {
+  text-align: center;  
+}
+.counter {
+  background-color: limegreen;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  display: inline;
+  border-radius: 0.5em;
+}

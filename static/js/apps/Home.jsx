@@ -35,68 +35,54 @@ class Home extends Component {
     }
 
     addCart(event) {
-        console.log(event.target.name);
         const id = event.target.name;
         const products = this.state.products;
         const results = products.filter(products => products.id == id);
         const newState = this.state.cartProducts;
-        console.log(results[0]);
-
         const newCart = newState.push(results[0]);
-        console.log(newCart);
 
         this.setState({
             cartProducts: newState
         })
 
-        const result = this.state.cartProducts.reduce(function(a, b) {
-            return {'price': a.price + b.price};
-         }).price;
-
-        console.log(result);
+        const result = this.state.cartProducts.reduce(function (a, b, c) {
+            return { 'price': a.price + b.price };
+        }).price;
     }
 
     removeFromCart(event) {
-        console.log(event.target);
-        console.log(this.state);
         const cart = this.state.cartProducts;
-
         const id = event.target.name;
-        console.log(id);
-        
+
         const newCart = cart.filter(function (el) {
             return el.id != id;
         });
 
-        console.log(newCart);
-        
         this.setState({
             cartProducts: newCart
         })
     }
 
     render() {
-
-        console.log(this.state);
         const { isLoading } = this.state;
         const { products } = this.state;
         const { cartProducts } = this.state;
-        console.log(products.length);
         return (
             <div>
                 <Cart cart={cartProducts} click={this.removeFromCart.bind(this)} />
-                {
-                    isLoading === false && products.length > 0 ? products.map(prod => {
-                        return (
-                            <div key={prod.id} className="product">
-                                <img src={prod.imageURL} alt="" />
-                                <p>{prod.name}</p>
-                                <p>${prod.price}</p>
-                                <button name={prod.id} onClick={this.addCart.bind(this)}>Add to Cart</button>
-                            </div>)
-                    }) : null
-                }
-
+                <section id="products">
+                    {
+                        isLoading === false && products.length > 0 ? products.map(prod => {
+                            return (
+                                <div key={prod.id} className="product">
+                                    <img src={prod.imageURL} alt="" />
+                                    <p>{prod.name}</p>
+                                    <p>${prod.price}</p>
+                                    <button name={prod.id} onClick={this.addCart.bind(this)} className="btn" >Add to Cart</button>
+                                </div>)
+                        }) : null
+                    }
+                </section>
             </div>
         );
     }
