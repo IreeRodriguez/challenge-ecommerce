@@ -15,7 +15,8 @@ class Cart extends Component {
     render() {
         console.log(this.props.cart);
         
-        const {cart} = this.props;
+        const { cart } = this.props;
+        const { click } = this.props;
         return (
             <div>
                 {
@@ -23,11 +24,11 @@ class Cart extends Component {
                         console.log(prod);
                         
                         return (
-                            <div key={prod[0].id}>
-                                <img src={prod[0].imageURL} alt="" />
-                                <p>{prod[0].name}</p>
-                                <p>${prod[0].price}</p>
-                                <button name={prod[0].id} onClick={this.removeItem.bind(this)}>Remove from Cart</button>
+                            <div key={prod.id}>
+                                <img src={prod.imageURL} alt="" />
+                                <p>{prod.name}</p>
+                                <p>${prod.price}</p>
+                                <button name={prod.id} onClick={click.bind(this)}>Remove from Cart</button>
                                 {/* <a href="#" onClick={this.submitCategory.bind(id)} value={id}>{categories}</a> */}
                             </div>)
                     })
